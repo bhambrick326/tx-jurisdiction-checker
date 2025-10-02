@@ -1,25 +1,19 @@
 import requests
-from .config import MAPBOX_TOKEN
+import os
 
-def geocode_address(address: str):
-    """
-    Use Mapbox API to convert an address into (lat, lon).
-    Returns (lat, lon) or (None, None) if not found.
-    """
+def geocode_address(address):
+    mapbox_token = os.getenv("MAPBOX_TOKEN")
     url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{address}.json"
     params = {
-        "access_token": MAPBOX_TOKEN,
+        "access_token": mapbox_token,
         "limit": 1,
         "country": "US"
     }
-
     response = requests.get(url, params=params)
-    response.raise_for_status()
-    data = response.json()
-
-    if "features" in data and len(data["features"]) > 0:
-        coords = data["features"][0]["geometry"]["coordinates"]
-        lon, lat = coords  # Mapbox gives [lon, lat]
-        return lat, lon
-
-    return None, None
+    if response.status_code == 200:
+        data = response.json()
+        if data["features"]:
+            coords = data["features"][0]["geometry"]["coordinates"]
+            full_address = data["features"][0]["place_name"]
+            return coords[1], coords[0], full_address   # ✅ 3 values
+    return None
