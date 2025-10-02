@@ -3,12 +3,8 @@ from flask import Flask
 def create_app():
     app = Flask(__name__)
 
-    # Import blueprints inside the function
-    from .web import web
-    from .api import api
-
-    # Register blueprints
-    app.register_blueprint(web)
-    app.register_blueprint(api, url_prefix="/api")
+    # Import and initialize routes
+    from .web import init_web
+    init_web(app)
 
     return app
