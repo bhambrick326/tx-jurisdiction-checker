@@ -83,23 +83,23 @@ form button:hover {
   margin-top: 10px;
 }
 
-/* Inside city limits result */
 .result-box.inside {
-  background: #e6f9ec;
-  border: 1px solid #28a745;
+  background: #e6f9ec;       /* pale green */
+  border: 1px solid #28a745; /* green border */
 }
 
-/* Outside city limits result */
 .result-box.outside {
-  background: #f9f9f9;
+  background: #f9f9f9;       /* light gray */
   border: 1px solid #999;
 }
 
 .result-box h2 {
   margin-top: 0;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
-/* Buttons and links */
+/* Buttons and links (shared) */
 .btn {
   display: inline-block;
   padding: 8px 14px;
@@ -114,15 +114,13 @@ form button:hover {
   background: #0066cc;
 }
 
-
-
 /* Warning text */
 .warning {
   color: #b30000;
   font-weight: bold;
 }
 
-/* Badges */
+/* Badges (for optional tags) */
 .badge {
   display: inline-block;
   padding: 4px 10px;
