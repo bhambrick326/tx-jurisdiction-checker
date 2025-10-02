@@ -1,0 +1,149 @@
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container */
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Header with colored background */
+.header-colored {
+  background-color: #004080;  /* dark blue */
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header-colored h1 {
+  margin: 0;
+  font-size: 2em;
+  color: white;
+}
+
+.header-colored .subtitle {
+  margin: 5px 0 0 0;
+  font-size: 1em;
+  color: #e0e0e0;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  padding: 10px 16px;
+  border: none;
+  background-color: #004080;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background-color: #0066cc;
+}
+
+/* Results section */
+.results {
+  margin-top: 20px;
+}
+
+.result-box {
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Inside city limits result */
+.result-box.inside {
+  background: #e6f9ec;
+  border: 1px solid #28a745;
+}
+
+/* Outside city limits result */
+.result-box.outside {
+  background: #f9f9f9;
+  border: 1px solid #999;
+}
+
+.result-box h2 {
+  margin-top: 0;
+}
+
+/* Buttons and links */
+.btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #004080;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.btn:hover {
+  background: #0066cc;
+}
+
+/* Warning text */
+.warning {
+  color: #b30000;
+  font-weight: bold;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: white;
+}
+
+.badge.inside {
+  background-color: #28a745; /* green */
+}
+
+.badge.outside {
+  background-color: #6c757d; /* gray */
+}
+/* Address card */
+.address-box {
+  background: #eef5ff; /* light blue */
+  border: 1px solid #004080;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #004080;
+}
