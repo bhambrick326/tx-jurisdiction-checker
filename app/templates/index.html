@@ -15,17 +15,30 @@
 
   <!-- Main Container -->
   <div class="container">
+    <!-- Address Form -->
     <form method="POST">
       <label for="address">Enter Address:</label>
       <input type="text" id="address" name="address" placeholder="123 Main St, Houston, TX" required>
       <button type="submit">Check Jurisdiction</button>
     </form>
 
+    <!-- Results Section -->
     {% if result %}
     <div class="results">
-      <div class="result-box {{ 'inside' if 'Inside' in result else 'outside' }}">
-        <h2>{{ result }}</h2>
-      </div>
+      {% if result.status == 'inside' %}
+        <div class="result-box inside">
+          <h2>{{ full_address }}</h2>
+          <p><strong>Inside City Limits:</strong> {{ result.city }}</p>
+          {% if result.permit_url %}
+            <p><a href="{{ result.permit_url }}" class="btn" target="_blank">Apply for Permit</a></p>
+          {% endif %}
+        </div>
+      {% elif result.status == 'outside' %}
+        <div class="result-box outside">
+          <h2>{{ full_address }}</h2>
+          <p><strong>Outside City Limits:</strong> No permit required</p>
+        </div>
+      {% endif %}
     </div>
     {% endif %}
   </div>

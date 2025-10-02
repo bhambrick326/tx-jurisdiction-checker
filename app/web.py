@@ -28,22 +28,23 @@ def init_web(app):
     @requires_auth
     def index():
         result = None
+        full_address = None
+
         if request.method == "POST":
             address = request.form.get("address")
             if address:
                 coords = geocode_address(address)
                 if coords:
+                    # geocode.py must return (lat, lon, full_address)
                     lat, lon, full_address = coords
-                    jurisdiction_result = check_jurisdiction(lat, lon)
-                    result = f"{full_address} → {jurisdiction_result}"
-                else:
-                    result = "Could not geocode address"
-        return render_template("index.html", result=result)
+                    result = check_jurisdiction(lat, lon)
+
+        return render_template("index.html", result=result, full_address=full_address)
 
     # Optional logout route (still works if typed in URL)
     @app.route("/logout")
     def logout():
         return Response(
             "You have been logged out.", 401,
-            {"WWW-Authenticate": 'Basic realm=\"Login Required\"'}
+            {"WWW-Authenticate": 'Basic realm="Login Required"'}
         )
