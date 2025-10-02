@@ -1,9 +1,7 @@
-from flask import Flask, render_template, request, Response
+from flask import render_template, request, Response
 from functools import wraps
 
-def create_app():
-    app = Flask(__name__)
-
+def init_web(app):
     # --- Authentication helpers ---
     def check_auth(username, password):
         return username == "admin" and password == "plumber123"
@@ -34,5 +32,3 @@ def create_app():
             "You have been logged out.", 401,
             {"WWW-Authenticate": 'Basic realm="Login Required"'}
         )
-
-    return app
