@@ -11,9 +11,6 @@
   <div class="header-colored">
     <h1>Texas Jurisdiction Checker</h1>
     <p class="subtitle">Find out if your project requires a permit</p>
-    <div class="header-actions">
-      <a href="{{ url_for('logout') }}" class="btn logout-btn">Logout</a>
-    </div>
   </div>
 
   <!-- Main Container -->
@@ -31,6 +28,11 @@
       </div>
     </div>
     {% endif %}
+
+    <!-- Logout button moved here -->
+    <div class="logout-section">
+      <a href="{{ url_for('logout') }}" class="btn logout-btn">Logout</a>
+    </div>
   </div>
 </body>
 </html>

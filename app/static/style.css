@@ -22,7 +22,7 @@ body {
   background-color: #004080;  /* dark blue */
   color: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 0 0 12px 12px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -52,8 +52,7 @@ form label {
   margin-bottom: 4px;
 }
 
-form input[type="text"],
-form input[type="password"] {
+form input[type="text"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -108,10 +107,25 @@ form button:hover {
   color: white;
   text-decoration: none;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .btn:hover {
   background: #0066cc;
+}
+
+/* Logout button specific */
+.logout-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.logout-btn {
+  background-color: #b30000; /* red */
+}
+
+.logout-btn:hover {
+  background-color: #cc0000;
 }
 
 /* Warning text */
@@ -136,29 +150,4 @@ form button:hover {
 
 .badge.outside {
   background-color: #6c757d; /* gray */
-}
-/* Address card */
-.address-box {
-  background: #eef5ff; /* light blue */
-  border: 1px solid #004080;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  font-weight: bold;
-  color: #004080;
-}
-/* Logout button style */
-.logout-btn {
-  background-color: #b30000; /* red */
-  margin-left: 10px;
-}
-
-.logout-btn:hover {
-  background-color: #cc0000;
-}
-
-/* Keep header actions aligned */
-.header-actions {
-  margin-top: 10px;
-  text-align: right;
 }
