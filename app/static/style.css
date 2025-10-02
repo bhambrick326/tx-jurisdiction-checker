@@ -147,3 +147,18 @@ form button:hover {
   font-weight: bold;
   color: #004080;
 }
+/* Logout button style */
+.logout-btn {
+  background-color: #b30000; /* red */
+  margin-left: 10px;
+}
+
+.logout-btn:hover {
+  background-color: #cc0000;
+}
+
+/* Keep header actions aligned */
+.header-actions {
+  margin-top: 10px;
+  text-align: right;
+}

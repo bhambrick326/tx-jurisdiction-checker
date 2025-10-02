@@ -58,12 +58,13 @@ def create_app():
         return render_template("index.html")
 
     # --- Logout route ---
-    @app.route("/logout")
-    def logout():
-        """Force browser to forget login by returning 401 Unauthorized"""
-        return Response(
-            "You have been logged out.", 401,
-            {"WWW-Authenticate": 'Basic realm="Login Required"'}
-        )
+   @app.route("/logout")
+def logout():
+    """Force logout by sending a 401 Unauthorized"""
+    return Response(
+        "You have been logged out.", 401,
+        {"WWW-Authenticate": 'Basic realm="Login Required"'}
+    )
+
 
     return app

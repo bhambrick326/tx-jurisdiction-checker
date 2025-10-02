@@ -2,57 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Texas Jurisdiction Checker</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <!-- Header Section -->
+  <div class="header-colored">
+    <h1>Texas Jurisdiction Checker</h1>
+    <p class="subtitle">Find out if your project requires a permit</p>
+    <div class="header-actions">
+      <a href="{{ url_for('logout') }}" class="btn logout-btn">Logout</a>
+    </div>
+  </div>
+<a href="{{ url_for('logout') }}" class="btn logout-btn">Logout</a>
+
+  <!-- Main Container -->
   <div class="container">
+    <form method="POST">
+      <label for="address">Enter Address:</label>
+      <input type="text" id="address" name="address" placeholder="123 Main St, Houston, TX" required>
+      <button type="submit">Check Jurisdiction</button>
+    </form>
 
-    <!-- Header -->
-    <header class="header-colored">
-      <h1>Texas Jurisdiction Checker</h1>
-      <p class="subtitle">Find out if your project requires a permit</p>
-    </header>
-
-    <!-- Address Form -->
-    <section class="form-section">
-      <form method="POST">
-        <label for="address">Enter Address:</label>
-        <input type="text" name="address" id="address" placeholder="123 Main St, Houston, TX" required>
-        <button type="submit">Check Jurisdiction</button>
-      </form>
-    </section>
-
- <!-- Results Section -->
-{% if result %}
-  <section class="results">
-    {% if address %}
-      <div class="address-box">
-        Address Entered: {{ address }}
+    {% if result %}
+    <div class="results">
+      <div class="result-box {{ 'inside' if 'Inside' in result else 'outside' }}">
+        <h2>{{ result }}</h2>
       </div>
+    </div>
     {% endif %}
-
-    {% if result.status == "inside" %}
-      <div class="result-box inside">
-        <h2>
-          <span class="badge inside">Inside City Limits</span> – {{ result.city }}
-        </h2>
-        {% if result.permit_url %}
-          <p><a href="{{ result.permit_url }}" target="_blank" class="btn">Apply for Permit</a></p>
-        {% else %}
-          <p class="warning">Permit link not found. Please verify with city.</p>
-        {% endif %}
-      </div>
-    {% elif result.status == "outside" %}
-      <div class="result-box outside">
-        <h2><span class="badge outside">Outside City Limits</span></h2>
-        <p>No permit required.</p>
-      </div>
-    {% elif result.status == "error" %}
-      <div class="result-box outside">
-        <h2><span class="badge outside">Error</span></h2>
-        <p>{{ result.message }}</p>
-      </div>
-    {% endif %}
-  </section>
-{% endif %}
+  </div>
+</body>
+</html>

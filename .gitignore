@@ -8,4 +8,4 @@ __pycache__/
 .env
 
 # Ignore large GIS files (optional if you keep these separate)
-*.geojson
+
