@@ -14,9 +14,13 @@ def jurisdiction_check():
     if not address:
         return jsonify({"error": "Missing address"}), 400
 
-    lat, lon = geocode_address(address)
-    if not lat or not lon:
+    coords = geocode_address(address)
+    if not coords or len(coords) < 2:
         return jsonify({"error": "Could not geocode address"}), 400
 
+    lat, lon, full_address = coords
+
     result = check_jurisdiction(lat, lon)
+    result["full_address"] = full_address  # add for clarity
+
     return jsonify(result)
