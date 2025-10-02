@@ -1,31 +1,10 @@
-from flask import render_template, request, Response
-from functools import wraps
+from flask import render_template, request
 from .geocode import geocode_address
 from .jurisdiction import check_jurisdiction
 
 def init_web(app):
-    # --- Authentication helpers ---
-    def check_auth(username, password):
-        return username == "admin" and password == "plumber123"
-
-    def authenticate():
-        return Response(
-            "Login required", 401,
-            {"WWW-Authenticate": 'Basic realm="Login Required"'}
-        )
-
-    def requires_auth(f):
-        @wraps(f)
-        def decorated(*args, **kwargs):
-            auth = request.authorization
-            if not auth or not check_auth(auth.username, auth.password):
-                return authenticate()
-            return f(*args, **kwargs)
-        return decorated
-
     # --- Routes ---
     @app.route("/", methods=["GET", "POST"])
-    @requires_auth
     def index():
         result = None
         full_address = None
@@ -35,16 +14,8 @@ def init_web(app):
             if address:
                 coords = geocode_address(address)
                 if coords:
-                    # geocode.py must return (lat, lon, full_address)
+                    # geocode.py returns (lat, lon, full_address)
                     lat, lon, full_address = coords
                     result = check_jurisdiction(lat, lon)
 
         return render_template("index.html", result=result, full_address=full_address)
-
-    # Optional logout route (still works if typed in URL)
-    @app.route("/logout")
-    def logout():
-        return Response(
-            "You have been logged out.", 401,
-            {"WWW-Authenticate": 'Basic realm="Login Required"'}
-        )
